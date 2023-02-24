@@ -2,11 +2,13 @@ defmodule ListFilter do
   require Integer
 
   def call(list) do
-    listWithOnlyNumberStrs = filterOnlyNumStrings(list)
-    listWithParsedNumbers = parseNumStringsToIntegers(listWithOnlyNumberStrs)
-    listWithOnlyOddNumbers = filterOddNumbers(listWithParsedNumbers)
+    filteredNumbers =
+      list
+      |> filterOnlyNumStrings()
+      |> parseNumStringsToIntegers()
+      |> filterOddNumbers()
 
-    Enum.count(listWithOnlyOddNumbers)
+    Enum.count(filteredNumbers)
   end
 
   defp filterOnlyNumStrings(list),
